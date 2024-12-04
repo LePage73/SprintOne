@@ -20,8 +20,8 @@ def main():
     # Plot the data
     dplt.create_and_save_plot(stock_data, ticker, period)
 
-    # Calculate average closing price
-    print(f'Средняя цена закрытия: {dd.calculate_and_display_average_price(stock_data):.2f}$')
+    # calculate and display average closed price
+    dd.calculate_and_display_average_price(stock_data)
 
 
 if __name__ == "__main__":

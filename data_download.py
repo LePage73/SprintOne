@@ -17,4 +17,5 @@ def calculate_and_display_average_price(data):
     вычисляет среднюю цену закрытия акций за заданный период
     """
     data_average = data['Close'].mean()
-    return data_average
+    print(f'Средняя цена закрытия: {data_average:.2f}$')
+    return
