@@ -14,6 +14,7 @@ def add_moving_average(data, window_size=5):
 
 def calculate_and_display_average_price(data):
     """"
+    вычисляет среднюю цену закрытия акций за заданный период
     """
     data_average = data['Close'].mean()
     return data_average
