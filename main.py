@@ -23,6 +23,9 @@ def main():
     # calculate and display average closed price
     dd.calculate_and_display_average_price(stock_data)
 
+    # notify if strong fluctuations closed price
+    dd.notify_if_strong_fluctuations(stock_data, input("Задайте порог изменения цены закрытия в процентах:>>"))
+
 
 if __name__ == "__main__":
     main()
