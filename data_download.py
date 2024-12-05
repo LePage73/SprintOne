@@ -1,6 +1,5 @@
 import yfinance as yf
 
-
 def fetch_stock_data(ticker, period='1mo'):
     """
     Получает исторические данные об акциях для указанного тикера и временного периода.
