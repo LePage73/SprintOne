@@ -1,4 +1,6 @@
 import yfinance as yf
+import glob
+import os
 
 def fetch_stock_data(ticker, period='1mo'):
     """
@@ -44,4 +46,21 @@ def notify_if_strong_fluctuations(data, threshold):
     fluct = (max - min) / min * 100
     if fluct > float(threshold):
         print(f"Цена закрытия менялась на {max - min:.2f}$ или {fluct:.2f}%")
+    return
+
+def export_data_to_csv(data, filename=None):
+    """
+    позволяет сохранять загруженные данные об акциях в CSV файл.
+    :param data:
+    :param filename:
+    :return:
+    """
+    # если имя файла не указано берем имя файла сохраненного предыдущей функцией - create_and_save_plot()
+    if filename == None or filename == '':
+        current_directory = os.getcwd()
+        list_files = glob.glob(current_directory + '\\*.png')
+        filename = max(list_files, key=os.path.getmtime)
+    filename = filename.split('.')[0] + '.csv'
+    data.to_csv(filename, sep=';', encoding='utf-8', index=True)
+    print(f'Загруженные данные сщхранены в файл: {filename}')
     return

@@ -25,6 +25,10 @@ def main():
     # notify if strong fluctuations closed price
     dd.notify_if_strong_fluctuations(stock_data, input("Задайте порог изменения цены закрытия в процентах:>>"))
 
+    # export data to CSV file
+    dd.export_data_to_csv(stock_data,
+                          filename=input('Задайте имя CSV файла, если не укажете будет установлено имя файла Графика:>>'))
+
 
 if __name__ == "__main__":
     main()
