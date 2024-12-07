@@ -62,5 +62,5 @@ def export_data_to_csv(data, filename=None):
         filename = max(list_files, key=os.path.getmtime)
     filename = filename.split('.')[0] + '.csv'
     data.to_csv(filename, sep=';', encoding='utf-8', index=True)
-    print(f'Загруженные данные сщхранены в файл: {filename}')
+    print(f'Загруженные данные сохранены в файл: {filename}')
     return
