@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-from matplotlib import gridspec
 import pandas as pd
 import os
 import glob
