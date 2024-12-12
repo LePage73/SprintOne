@@ -1,5 +1,6 @@
 import data_download as dd
 import data_plotting as dplt
+import pandas as pd
 
 
 def main():
@@ -37,6 +38,10 @@ def main():
 
     # get and plot MACD
     dplt.update_macd_to_plot(dd.get_macd(stock_data))
+
+    pd.set_option('display.max_rows', None)
+    pd.reset_option('display.max_columns')
+
 
 
 if __name__ == "__main__":

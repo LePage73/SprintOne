@@ -87,10 +87,9 @@ def update_macd_to_plot(df):
     _ = [ax.set_subplotspec(fig.add_gridspec(2, 1)[0]) for ax in ax_list]
     # выбираем нижнюю ячейку и строим в ней график MACD
     plt.subplot(212)
-    dates = df.index.to_numpy()
-    plt.plot(dates, df['MACD'], 'y', label='MACD')
-    plt.plot(dates, df['SignalLine'], 'r', label='SignalLine')
-    plt.bar(dates, df['BC'], width=1, color=df['BC_COLOR'], label='BC')
+    plt.plot(df.index, df['MACD'], 'y', label='MACD')
+    plt.plot(df.index, df['SignalLine'], 'r', label='SignalLine')
+    plt.bar(df.index, df['BC'], color=df['BC_COLOR'], label='BC')
     plt.tight_layout()
     plt.legend()
     # находим имя файла
