@@ -73,7 +73,7 @@ def update_rsi_to_plot(df, rsi):
     print(f'Дополненый RSI график сохранен в файл: {filename}')
 
 
-def update_macd_to_plot(df, filename=None):
+def update_macd_to_plot(df):
     """
     Добавляет к предыдущему холсту график MACD и сохраняет в файл
     :param df:
