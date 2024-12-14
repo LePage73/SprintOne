@@ -43,7 +43,7 @@ def create_and_save_plot(data, ticker, period, filename=None):
     print(f"График сохранен как {filename}")
 
 
-def update_rsi_to_plot(df, rsi):
+def update_rsi_to_plot(rsi):
     """
     Дополняет предыдущий график добавляя к нему график RSI и сохраняет в файл
     :param rsi:
@@ -76,7 +76,6 @@ def update_macd_to_plot(df):
     """
     Добавляет к предыдущему холсту график MACD и сохраняет в файл
     :param df:
-    :param filename:
     :return:
     """
     # получаем текущую фигуру
@@ -98,4 +97,5 @@ def update_macd_to_plot(df):
     filename = max(list_files, key=os.path.getmtime)
     filename = filename.split('.')[0] + '_and_MACD.png'
     plt.savefig(filename)
+    plt.show()
     print(f'Дополненый MACD график сохранен в файл: {filename}')

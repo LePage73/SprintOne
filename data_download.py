@@ -2,18 +2,21 @@ import pandas as pd
 import yfinance as yf
 import glob
 import os
-import pandas
 
 
-def fetch_stock_data(ticker, period='1mo'):
+def fetch_stock_data(ticker, start_date, end_date, period='1mo'):
     """
     Получает исторические данные об акциях для указанного тикера и временного периода.
     :param ticker:
     :param period:
+    :param start_date:
+    :param end_date:
     :return DataFrame:
     """
     stock = yf.Ticker(ticker)
-    data = stock.history(period=period)
+    if period == 'manually_period':
+        period = '1mo'
+    data = stock.history(period=period, start=start_date, end=end_date)
     return data
 
 
@@ -45,13 +48,13 @@ def notify_if_strong_fluctuations(data, threshold):
     :param threshold:
     :return:
     """
-    if threshold == None or threshold == '':
+    if threshold is None or threshold == '':
         threshold = 0
-    min = data.Close.min()
-    max = data.Close.max()
-    fluct = (max - min) / min * 100
+    min_close = data.Close.min()
+    max_close = data.Close.max()
+    fluct = (max_close - min_close) / min_close * 100
     if fluct > float(threshold):
-        print(f"Цена закрытия менялась на {max - min:.2f}$ или {fluct:.2f}%")
+        print(f"Цена закрытия менялась на {max_close - min_close:.2f}$ или {fluct:.2f}%")
     return
 
 
@@ -63,7 +66,7 @@ def export_data_to_csv(data, filename=None):
     :return:
     """
     # если имя файла не указано берем имя файла сохраненного предыдущей функцией - create_and_save_plot()
-    if filename == None or filename == '':
+    if filename is None or filename == '':
         current_directory = os.getcwd()
         list_files = glob.glob(current_directory + '\\*.png')
         filename = max(list_files, key=os.path.getmtime)
@@ -75,10 +78,9 @@ def export_data_to_csv(data, filename=None):
 
 def get_rsi(df, periods=14, ema=True):
     """
-       Возвращает DataFrame c датой (индексом) и значением RSI.
+       Возвращает DataFrame c датой и значением RSI.
     """
     close_delta = df['Close'].diff()
-
     # Сделаем два ряда: для верхних и нижних закрытий
     up = close_delta.clip(lower=0)
     down = -1 * close_delta.clip(upper=0)
