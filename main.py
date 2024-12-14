@@ -2,6 +2,7 @@ import data_download as dd
 import data_plotting as dplt
 import datetime as dt
 
+
 def main():
     print("Добро пожаловать в инструмент получения и построения графиков биржевых данных.")
     print(
@@ -14,7 +15,8 @@ def main():
         ticker = 'NVDA'
         print("Тикер по умолчанию - NVDA (NVIDIA Corp.)")
     valid_period = ['1d', '5d', '1mo', '3mo', '6mo', '1y', '2y', '5y', '10y', 'ytd', 'max']
-    period = input("Введите период для данных (например, '1mo' для одного месяца):»")
+    period = input(
+        "Введите период для данных (например, '1mo' для одного месяца), если не укажете то предложим задать вручную:»")
     date_start = None
     date_end = None
     if not period in valid_period:
@@ -34,9 +36,8 @@ def main():
             date_end = dt.date.today()
             print("Дата не распознана, будет установлена сегодняшняя дата")
 
-
     # Fetch stock data
-    stock_data = dd.fetch_stock_data(ticker, start_date= date_start, end_date=date_end, period=period)
+    stock_data = dd.fetch_stock_data(ticker, start_date=date_start, end_date=date_end, period=period)
 
     # Add moving average to the data
     stock_data = dd.add_moving_average(stock_data)
