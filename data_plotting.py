@@ -15,6 +15,7 @@ def create_and_save_plot(data, ticker, period, filename=None):
     :param filename:
     :return:
     """
+
     plt.figure(figsize=(10, 6))
 
     if 'Date' not in data:
@@ -99,3 +100,15 @@ def update_macd_to_plot(df):
     plt.savefig(filename)
     plt.show()
     print(f'Дополненый MACD график сохранен в файл: {filename}')
+
+def set_style():
+    print("Доступные стили оформления графиков")
+    _ = [print(x, '. - ',plt.style.available[x]) for x in range(1, len(plt.style.available))]
+    try:
+        style_sel = int(input('Ваш выбор:»'))
+        style = plt.style.available[style_sel]
+    except:
+        print("Стиль не распознан - установлен default")
+        style = 'default'
+
+    plt.style.use(style)

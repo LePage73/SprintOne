@@ -36,6 +36,9 @@ def main():
             date_end = dt.date.today()
             print("Дата не распознана, будет установлена сегодняшняя дата")
 
+    # set style
+    dplt.set_style()
+
     # Fetch stock data
     stock_data = dd.fetch_stock_data(ticker, start_date=date_start, end_date=date_end, period=period)
 
