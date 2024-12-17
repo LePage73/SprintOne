@@ -102,6 +102,10 @@ def update_macd_to_plot(df):
     print(f'Дополненый MACD график сохранен в файл: {filename}')
 
 def set_style():
+    """
+    Показывает доступные стили, предлагает пользователю выбор, устанавливает стиль оформления графиков
+    :return:
+    """
     print("Доступные стили оформления графиков")
     _ = [print(x, '. - ',plt.style.available[x]) for x in range(1, len(plt.style.available))]
     try:
