@@ -107,12 +107,11 @@ def set_style():
     :return:
     """
     print("Доступные стили оформления графиков")
-    _ = [print(x, '. - ',plt.style.available[x]) for x in range(1, len(plt.style.available))]
+    _ = [print(x + 1, '. - ', plt.style.available[x]) for x in range(0, len(plt.style.available) - 1)]
     try:
         style_sel = int(input('Ваш выбор:»'))
-        style = plt.style.available[style_sel]
+        style = plt.style.available[style_sel - 1]
     except:
         print("Стиль не распознан - установлен default")
         style = 'default'
-
     plt.style.use(style)
