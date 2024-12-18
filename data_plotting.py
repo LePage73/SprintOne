@@ -110,7 +110,11 @@ def set_style():
     _ = [print(x + 1, '. - ', plt.style.available[x]) for x in range(0, len(plt.style.available) - 1)]
     try:
         style_sel = int(input('Ваш выбор:»'))
-        style = plt.style.available[style_sel - 1]
+        if not  0 < style_sel <= len(plt.style.available):
+            style = 'default'
+            print("Стиль не распознан - установлен default")
+        else:
+            style = plt.style.available[style_sel - 1]
     except:
         print("Стиль не распознан - установлен default")
         style = 'default'
